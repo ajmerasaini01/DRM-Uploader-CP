@@ -1,25 +1,20 @@
-from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid 
+import os
+from pyrogram import Client, filters
+from pyrogram.errors import FloodWait
+from pyromod import listen
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 import requests
 import m3u8
 import json
 import subprocess
-from pyrogram import Client, filters
-from pyrogram.types.messages_and_media import message
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.errors import FloodWait
-from pyromod import listen
-from pyrogram.types import Message    
-from p_bar import progress_bar    
-from subprocess import getstatusoutput    
-from aiohttp import ClientSession    
-import helper    
-from logger import logging    
-import time    
-import asyncio    
-from pyrogram.types import User, Message    
-import sys    
-import re    
-import os 
+from subprocess import getstatusoutput
+from aiohttp import ClientSession
+import helper
+from logger import logging
+import time
+import asyncio
+import sys
+import re
 import urllib
 import urllib.parse
 import tgcrypto
@@ -29,29 +24,32 @@ from Crypto.Util.Padding import unpad
 from base64 import b64encode, b64decode
 
 photo1 = 'https://envs.sh/PQ_.jpg'
-getstatusoutput(f"wget {photo1} -O 'photo.jpg'")    
+getstatusoutput(f"wget {photo1} -O 'photo.jpg'")
 photo = "photo.jpg"
 
-credit ="😎𝖘:)™~" 
+credit = "😎𝖘:)™~"
 OWNER = int(os.environ.get("OWNER", 6530997270))
-try: 
-    ADMINS=[] 
-    for x in (os.environ.get("ADMINS", "6530997270").split()):  
-        ADMINS.append(int(x)) 
-except ValueError: 
-        raise Exception("Your Admins list does not contain valid integers.") 
+try:
+    ADMINS = []
+    for x in (os.environ.get("ADMINS", "6530997270").split()):
+        ADMINS.append(int(x))
+except ValueError:
+    raise Exception("Your Admins list does not contain valid integers.")
 ADMINS.append(OWNER)
 
-bot = Client("bot",    
-   bot_token="",    
-   api_id = None    
-   api_hash= ""
+# --- FIXED CLIENT INITIALIZATION ---
+bot = Client(
+    "bot",
+    bot_token=os.getenv("BOT_TOKEN"),
+    api_id=int(os.getenv("API_ID")),
+    api_hash=os.getenv("API_HASH")
 )
 
-@bot.on_message(filters.command(["started"]))    
-async def account_login(bot: Client, m: Message):    
-    editable = await m.reply_text("**👋 ʜᴇʟʟᴏ!\n🌟ɪ ᴀᴍ ᴛxᴛ ꜰɪʟᴇ ᴅᴏᴡʟᴏᴀᴅᴇʀ ʙᴏᴛ** \n\n❤️‍🔥 **ᴘʀᴇꜱꜱ /scammer ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴠɪᴅᴇᴏ ʙʏ ᴛxᴛ**\n\n❤️‍🩹 **ᴊᴏɪɴ ᴏᴜʀ <a href='https://t.me/'>ᴛᴇʟᴇɢʀᴀᴍ ᴄʜᴀɴɴᴇʟ</a>** \n\n<pre>💗 ᴘᴏᴡᴇʀᴇᴅ ʙʏ : https://t.me/ScmersHell</pre>\n-═════━‧₊˚❀༉‧₊˚.━═════-") 
-
+@bot.on_message(filters.command(["started"]))
+async def account_login(bot: Client, m: Message):
+    await m.reply_text(
+        "**👋 ʜᴇʟʟᴏ!\n🌟ɪ ᴀᴍ ᴛxᴛ ꜰɪʟᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ** \n\n❤️‍🔥 **ᴘʀᴇꜱꜱ /scammer ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴠɪᴅᴇᴏ ʙʏ ᴛxᴛ**\n\n❤️‍🩹 **ᴊᴏɪɴ ᴏᴜʀ <a href='https://t.me/'>ᴛᴇʟᴇɢʀᴀᴍ ᴄʜᴀɴɴᴇʟ</a>** \n\n<pre>💗 ᴘᴏᴡᴇʀᴇᴅ ʙʏ : https://t.me/ScmersHell</pre>\n-═════━‧₊˚❀༉‧₊˚.━═════-"
+    )
 @bot.on_message(filters.command("Ruko"))    
 async def restart_handler(_, m):    
     await m.reply_text("🚯 **ꜱᴛᴏᴘᴘᴇᴅ** 🚯", True)    
@@ -302,4 +300,5 @@ async def account_login(bot: Client, m: Message):
         await m.reply_text(e)
         
 bot.run()
+
 
