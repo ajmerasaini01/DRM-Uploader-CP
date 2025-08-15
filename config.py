@@ -6,7 +6,7 @@ import os
 
 class Config(object):
     # Telegram bot token from @BotFather
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "7614269151:AAFpIPvjOxS9Lpdwag2Uw8Fh8P79YzDtWz8")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
     # Telegram API ID and Hash from https://my.telegram.org
     API_ID = int(os.environ.get("API_ID", 24307077))
@@ -14,3 +14,4 @@ class Config(object):
 
     # Authorized user IDs (comma-separated or single)
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "5298142728").split(","))
+
