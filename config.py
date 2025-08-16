@@ -9,9 +9,10 @@ class Config(object):
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
     # Telegram API ID and Hash from https://my.telegram.org
-    API_ID = int(os.environ.get("API_ID", 24307077))
-    API_HASH = os.environ.get("API_HASH", "3fb755f9e1e27952e454661ff4ffae41")
+    API_ID = int(os.environ.get("API_ID", 26331872))
+    API_HASH = os.environ.get("API_HASH", "c93589620441707c37c5683a02eea54e")
 
     # Authorized user IDs (comma-separated or single)
-    AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "5298142728").split(","))
+    AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "8355707251").split(","))
+
 
